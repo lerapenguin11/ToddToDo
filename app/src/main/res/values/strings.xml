@@ -8,4 +8,7 @@
     <string name="all_tasks">All Tasks</string>
     <string name="_3_lists_available">3 Lists available</string>
     <string name="create_new_item">Create new Item</string>
+    <string name="set_time">Set time</string>
+    <string name="add_task">Add task</string>
+    <string name="save">Save</string>
 </resources>
