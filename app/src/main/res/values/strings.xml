@@ -7,4 +7,5 @@
     <string name="today">Today</string>
     <string name="all_tasks">All Tasks</string>
     <string name="_3_lists_available">3 Lists available</string>
+    <string name="create_new_item">Create new Item</string>
 </resources>
