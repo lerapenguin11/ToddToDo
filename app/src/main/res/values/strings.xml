@@ -11,4 +11,12 @@
     <string name="set_time">Set time</string>
     <string name="add_task">Add task</string>
     <string name="save">Save</string>
+    <string name="schedule_your_task">Schedule your task</string>
+    <string name="s">S</string>
+    <string name="m">M</string>
+    <string name="t">T</string>
+    <string name="w">W</string>
+    <string name="f">F</string>
+    <string name="done">Done</string>
+    <string name="close">Close</string>
 </resources>
