@@ -22,6 +22,9 @@ internal class CalendarAdapter(
 
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         holder.dayOfMonth.text = daysOfMonth[position]
+//        holder.itemView.setOnClickListener {
+//            onItemListener.getCalendar(position, daysOfMonth[position])
+//        }
     }
 
     override fun getItemCount(): Int {

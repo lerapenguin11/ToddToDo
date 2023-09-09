@@ -11,20 +11,28 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.toddtodo.R
+import com.example.toddtodo.business.db.TaskList
+import com.example.toddtodo.business.db.TaskModel
 import com.example.toddtodo.databinding.FragmentAddTaskBinding
 import com.example.toddtodo.presentation.adapter.CalendarAdapter
 import com.example.toddtodo.presentation.adapter.listener.CalendarListener
 import com.example.toddtodo.utilits.replaceFragment
+import com.example.toddtodo.viewModel.TaskViewModel
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 
 class AddTaskFragment : Fragment(), CalendarListener {
     private var _binding : FragmentAddTaskBinding? = null
@@ -32,6 +40,9 @@ class AddTaskFragment : Fragment(), CalendarListener {
     private var selectedDate: LocalDate? = null
     private lateinit var month : TextView
     private lateinit var recyclerView: RecyclerView
+    private lateinit var date : String
+    private lateinit var time : String
+    private lateinit var viewModal : TaskViewModel
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -41,15 +52,62 @@ class AddTaskFragment : Fragment(), CalendarListener {
 
         _binding = FragmentAddTaskBinding.inflate(inflater, container, false)
 
+        viewModal = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application = requireActivity().application)
+        ).get(TaskViewModel::class.java)
+
+
         binding.btCloseAddTask.setOnClickListener { replaceFragment(MenuFragment()) }
 
-        binding.btAddDate.setOnClickListener { showDialog() }
+        binding.btAddDate.setOnClickListener { showDialogDate() }
+        binding.btAddTime.setOnClickListener { showDialogTime() }
+        binding.btSave.setOnClickListener {
+            saveTask()
+        }
 
         return binding.root
     }
 
+    private fun saveTask() {
+        val task = binding.etInputTask.text.toString()
+        if (task.isNotEmpty() && date.isNotEmpty() && time.isNotEmpty()){
+            viewModal.addNote(TaskModel(date = date, listTask = arrayListOf(TaskList(task = task, time)) ))
+            binding.etInputTask.text.clear()
+            replaceFragment(MenuFragment())
+        }
+    }
+
+    private fun showDialogTime() {
+        val dialog = context?.let { Dialog(it) }
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        dialog?.setCancelable(false)
+        dialog?.setContentView(R.layout.full_sreen_time)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val btClose = dialog!!.findViewById<ConstraintLayout>(R.id.bt_close)
+        val btDone = dialog.findViewById<ConstraintLayout>(R.id.bt_done)
+        val timePicker = dialog.findViewById<TimePicker>(R.id.timePicker)
+
+        timePicker.setOnTimeChangedListener { view, hourOfDay, minute ->
+            time = "$hourOfDay:$minute"
+        }
+
+        btDone.setOnClickListener {
+            if (timePicker.isNotEmpty()){
+                dialog.cancel()
+            }
+        }
+
+        btClose.setOnClickListener { dialog.cancel() }
+
+        dialog.show()
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun showDialog() {
+    private fun showDialogDate() {
         val dialog = context?.let { Dialog(it) }
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
@@ -62,25 +120,32 @@ class AddTaskFragment : Fragment(), CalendarListener {
         recyclerView = dialog.findViewById(R.id.rv_calendar)
         selectedDate = LocalDate.now();
         setMonthView();
-
         val btBack = dialog.findViewById<ImageView>(R.id.ic_back_calendar)
         val btForward = dialog.findViewById<ImageView>(R.id.ic_forward_calendar)
+        val btClose = dialog.findViewById<ConstraintLayout>(R.id.bt_close)
+        val btDone = dialog.findViewById<ConstraintLayout>(R.id.bt_done)
 
         btBack.setOnClickListener { previousMonthAction() }
         btForward.setOnClickListener { nextMonthAction() }
-
         dialog.show()
+
+        btClose.setOnClickListener { dialog.cancel() }
+        btDone.setOnClickListener {
+            if (date.isNotEmpty()){
+                dialog.cancel()
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setMonthView() {
-        month.setText(monthYearFromDate(selectedDate!!))
+        month.text = monthYearFromDate(selectedDate!!)
         val daysInMonth = daysInMonthArray(selectedDate!!)
         val calendarAdapter = CalendarAdapter(daysInMonth, this)
         val layoutManager: RecyclerView.LayoutManager =
             GridLayoutManager(requireActivity().getApplicationContext(), 7)
-        recyclerView.setLayoutManager(layoutManager)
-        recyclerView.setAdapter(calendarAdapter)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = calendarAdapter
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -125,5 +190,7 @@ class AddTaskFragment : Fragment(), CalendarListener {
             )
             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         }
+
+        date = "$day " + monthYearFromDate(selectedDate!!)
     }
 }

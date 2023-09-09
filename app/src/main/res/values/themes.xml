@@ -13,4 +13,12 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="MyTimePickerStyle" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="title">false</item>
+        <item name="android:background">#616161</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white2</item>
+        <item name="android:textSize">28sp</item>
+    </style>
 </resources>
