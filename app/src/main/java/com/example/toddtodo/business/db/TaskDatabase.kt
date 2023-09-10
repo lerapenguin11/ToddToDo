@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
-@Database(entities = arrayOf(TaskModel::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(TaskModel::class), version = 5, exportSchema = false)
+@TypeConverters(TaskListConverter::class)
 abstract class TaskDatabase : RoomDatabase(){
 
     abstract fun getTaskDao(): TaskDao
@@ -20,7 +22,7 @@ abstract class TaskDatabase : RoomDatabase(){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TaskDatabase::class.java,
-                    "task_database"
+                    "task_database_5"
                 ).build()
                 INSTANCE = instance
                 instance

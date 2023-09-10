@@ -31,7 +31,6 @@ import com.example.toddtodo.viewModel.TaskViewModel
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 
 class AddTaskFragment : Fragment(), CalendarListener {
@@ -72,7 +71,10 @@ class AddTaskFragment : Fragment(), CalendarListener {
     private fun saveTask() {
         val task = binding.etInputTask.text.toString()
         if (task.isNotEmpty() && date.isNotEmpty() && time.isNotEmpty()){
-            viewModal.addNote(TaskModel(date = date, listTask = arrayListOf(TaskList(task = task, time)) ))
+            viewModal.addNote(TaskModel(/*id = taskId.getId(),*/ date = date,
+                listTask = arrayListOf(TaskList(task = task, time))
+            ))
+
             binding.etInputTask.text.clear()
             replaceFragment(MenuFragment())
         }
