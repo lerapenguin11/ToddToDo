@@ -2,6 +2,7 @@ package com.example.toddtodo.business.repos
 
 import androidx.lifecycle.LiveData
 import com.example.toddtodo.business.db.TaskDao
+import com.example.toddtodo.business.db.TaskList
 import com.example.toddtodo.business.db.TaskModel
 
 class TaskRepository(private val taskDao: TaskDao) {
@@ -18,5 +19,13 @@ class TaskRepository(private val taskDao: TaskDao) {
 
     suspend fun update(task: TaskModel){
         taskDao.update(task)
+    }
+
+    fun updateTask(task : TaskList){
+        taskDao.updateSubTasks(task)
+    }
+
+    fun deleteTask(taskModel: TaskList){
+        taskDao.deleteSubTask(taskModel)
     }
 }

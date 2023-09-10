@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.toddtodo.business.db.TaskDatabase
+import com.example.toddtodo.business.db.TaskList
 import com.example.toddtodo.business.db.TaskModel
 import com.example.toddtodo.business.repos.TaskRepository
 import kotlinx.coroutines.Dispatchers
@@ -31,5 +32,13 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     fun addNote(task: TaskModel) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(task)
+    }
+
+    fun updateTaskList(taskList: TaskList)= viewModelScope.launch(Dispatchers.IO) {
+        repository.updateTask(taskList)
+    }
+
+    fun deleteTask(taskList: TaskList) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteTask(taskList)
     }
 }

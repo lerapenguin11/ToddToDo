@@ -89,7 +89,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/block_today"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/block_scheduled">
@@ -127,15 +127,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ic_todday"
                 app:layout_constraintTop_toTopOf="@+id/ic_todday" />
-
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="#50FFFFFF"
-                android:layout_marginBottom="1dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_todday" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

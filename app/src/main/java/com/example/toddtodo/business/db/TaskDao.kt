@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface TaskDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(task : TaskModel)
 
     @Delete
@@ -17,4 +17,10 @@ interface TaskDao {
 
     @Update
     fun update(task: TaskModel)
+
+    @Update(entity = TaskModel::class)
+    fun updateSubTasks(taskList: TaskList)
+
+    @Delete(entity = TaskModel::class)
+    fun deleteSubTask(taskList: TaskList)
 }

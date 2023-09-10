@@ -31,11 +31,32 @@
         tools:listitem="@layout/item_scheduled_child" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/cl_delete_item_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_delete_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_create_new_item_child"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/cl_delete_item_parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView">
 
         <ImageView
@@ -53,10 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/sp_pro_display_medium"
+            android:includeFontPadding="false"
             android:text="@string/create_new_item"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:includeFontPadding="false"
             app:layout_constraintBottom_toBottomOf="@+id/ic_ad"
             app:layout_constraintStart_toEndOf="@+id/ic_ad"
             app:layout_constraintTop_toTopOf="@+id/ic_ad" />

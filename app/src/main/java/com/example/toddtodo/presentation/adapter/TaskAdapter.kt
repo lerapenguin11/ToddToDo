@@ -1,15 +1,18 @@
 package com.example.toddtodo.presentation.adapter
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.toddtodo.R
 import com.example.toddtodo.business.db.TaskList
-import com.example.toddtodo.business.db.TaskModel
 
-class TaskAdapter(private val tasks : ArrayList<TaskList>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(/*private val tasks : ArrayList<TaskList>*/private val itemClickListener: RecyclerView2ClickListener) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+    private var onFavoriteClickListener: ((TaskList) -> Unit)? = null
+    private val tasks = ArrayList<TaskList>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_scheduled_child, parent, false)
@@ -30,14 +33,32 @@ class TaskAdapter(private val tasks : ArrayList<TaskList>) : RecyclerView.Adapte
         notifyDataSetChanged()
     }
 
-    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val taskTextView : TextView = itemView.findViewById(R.id.tv_task)
         private val timeTextView : TextView = itemView.findViewById(R.id.tv_time)
-
+        private val itemClick : ConstraintLayout = itemView.findViewById(R.id.box_task)
 
         fun bind(task: TaskList) {
             taskTextView.text = task.task
             timeTextView.text = task.time
+
+            if (task.click){
+                taskTextView.paintFlags = taskTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                itemClick.setBackgroundResource(R.drawable.bg_click_item)
+            }
+
+            itemView.setOnClickListener {
+                //onFavoriteClickListener?.invoke(task)
+                itemClickListener.onItemClick(position, task)
+            }
         }
+    }
+
+    interface RecyclerView2ClickListener {
+        fun onItemClick(position_: Int, task : TaskList)
+    }
+
+    fun setOnFavoriteClickListener(listener: (TaskList) -> Unit) {
+        onFavoriteClickListener = listener
     }
 }

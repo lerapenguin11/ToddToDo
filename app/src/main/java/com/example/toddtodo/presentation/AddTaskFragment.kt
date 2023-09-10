@@ -31,7 +31,6 @@ import com.example.toddtodo.viewModel.TaskViewModel
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import kotlin.time.Duration.Companion.minutes
 
 class AddTaskFragment : Fragment(), CalendarListener {
     private var _binding : FragmentAddTaskBinding? = null
@@ -42,6 +41,7 @@ class AddTaskFragment : Fragment(), CalendarListener {
     private lateinit var date : String
     private lateinit var time : String
     private lateinit var viewModal : TaskViewModel
+    private lateinit var datePicker : LocalDate
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -68,12 +68,15 @@ class AddTaskFragment : Fragment(), CalendarListener {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun saveTask() {
         val task = binding.etInputTask.text.toString()
         if (task.isNotEmpty() && date.isNotEmpty() && time.isNotEmpty()){
             viewModal.addNote(TaskModel(/*id = taskId.getId(),*/ date = date,
-                listTask = arrayListOf(TaskList(task = task, time))
+                listTask = arrayListOf(TaskList(task = task, time = time, click = false)), datePicker = datePicker
             ))
+
+            /*viewModal.updateNote(TaskModel(id = 0, date = date, listTask = arrayListOf()))*/
 
             binding.etInputTask.text.clear()
             replaceFragment(MenuFragment())
@@ -192,7 +195,7 @@ class AddTaskFragment : Fragment(), CalendarListener {
             )
             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
         }
-
+        datePicker = selectedDate!!
         date = "$day " + monthYearFromDate(selectedDate!!)
     }
 }

@@ -12,17 +12,17 @@ import com.example.toddtodo.business.db.TaskList
 import com.example.toddtodo.business.db.TaskModel
 import com.example.toddtodo.presentation.adapter.listener.DataListener
 
-class DateAdapter(private val listener : DataListener) : RecyclerView.Adapter<DateAdapter.DateViewHolder>() {
+class AllDateAdapter() : RecyclerView.Adapter<AllDateAdapter.AllDateViewHolder>() {
     private val dates = mutableListOf<TaskModel>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllDateViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_scheduled_parent, parent, false)
+            .inflate(R.layout.item_all_task_parent, parent, false)
 
-        return DateViewHolder(view)
+        return AllDateViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DateViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AllDateViewHolder, position: Int) {
         val dateItem = dates[position]
         holder.bind(dateItem)
     }
@@ -35,32 +35,16 @@ class DateAdapter(private val listener : DataListener) : RecyclerView.Adapter<Da
         notifyDataSetChanged()
     }
 
-    inner class DateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class AllDateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dateTextView: TextView = itemView.findViewById(R.id.tv_date)
         private val taskRecyclerView: RecyclerView = itemView.findViewById(R.id.recyclerView)
-        private val newItemTask: ConstraintLayout =
-            itemView.findViewById(R.id.cl_create_new_item_child)
-        private val btDelete : ConstraintLayout = itemView.findViewById(R.id.cl_delete_item_parent)
 
         fun bind(dateItem: TaskModel) {
             dateTextView.text = dateItem.date
             taskRecyclerView.layoutManager = LinearLayoutManager(itemView.context)
-            val adapter = TaskAdapter(object : TaskAdapter.RecyclerView2ClickListener {
-
-                override fun onItemClick(position_: Int, task: TaskList) {
-                    listener.getDateTaskListener(dateItem, task, position_, positionList = position)
-                }
-            })
+            val adapter = AllTaskAdapter()
             taskRecyclerView.adapter = adapter
             adapter.setItem(dateItem.listTask)
-
-            newItemTask.setOnClickListener {
-                listener.getDataListener(dateItem, position = position)
-            }
-
-            btDelete.setOnClickListener {
-                listener.getDeleteTaskList(dateItem, position = position)
-            }
         }
     }
 }

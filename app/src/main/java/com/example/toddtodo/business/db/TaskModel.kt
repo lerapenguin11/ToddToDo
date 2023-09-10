@@ -1,19 +1,26 @@
 package com.example.toddtodo.business.db
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.*
+import java.time.LocalDate
 
 @Entity(tableName = "task")
-data class TaskModel(
+data class TaskModel @RequiresApi(Build.VERSION_CODES.O) constructor(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     @ColumnInfo(name = "date")
     var date: String,
     @ColumnInfo(name ="listTask")
     @TypeConverters(TaskListConverter::class)
-    var listTask: ArrayList<TaskList>
+    var listTask: ArrayList<TaskList>,
+    @ColumnInfo(name = "datePicker")
+    @TypeConverters
+    var datePicker: LocalDate?
 )
 {
-    constructor() : this(id = 0, date = "", listTask = arrayListOf())
+    @RequiresApi(Build.VERSION_CODES.O)
+    constructor() : this(id = 0, date = "", listTask = arrayListOf(), datePicker = null)
 
     @JvmName("setId1")
     private fun setId(id: Int) {
@@ -33,5 +40,15 @@ data class TaskModel(
     @JvmName("setDate1")
     fun setDate(date: String){
         this.date = date
+    }
+
+    @JvmName("setDatePicker1")
+    fun setDatePicker(datePicker : LocalDate){
+        this.datePicker = datePicker
+    }
+
+    @JvmName("getDatePicker1")
+    fun getDatePicker() : LocalDate{
+        return datePicker!!
     }
 }

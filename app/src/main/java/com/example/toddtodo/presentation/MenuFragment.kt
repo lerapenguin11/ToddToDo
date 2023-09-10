@@ -33,5 +33,9 @@ class MenuFragment : Fragment() {
         }
 
         binding.fabAddTask.setOnClickListener{ replaceFragment(AddTaskFragment()) }
+
+        binding.blockToday.setOnClickListener { replaceFragment(TodayFragment()) }
+
+        binding.blockAllTasks.setOnClickListener { replaceFragment(AllTaskFragment()) }
     }
 }
