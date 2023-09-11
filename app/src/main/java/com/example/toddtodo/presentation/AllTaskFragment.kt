@@ -8,12 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.toddtodo.R
 import com.example.toddtodo.databinding.FragmentAllTaskBinding
-import com.example.toddtodo.databinding.FragmentMenuBinding
 import com.example.toddtodo.presentation.adapter.AllDateAdapter
-import com.example.toddtodo.presentation.adapter.DateAdapter
-import com.example.toddtodo.utilits.replaceFragment
+import com.example.toddtodo.utilits.replaceFragmentMain
 import com.example.toddtodo.viewModel.TaskViewModel
 
 class AllTaskFragment : Fragment() {
@@ -36,7 +33,7 @@ class AllTaskFragment : Fragment() {
 
         observeAllTaskData()
 
-        binding.fabBack.setOnClickListener { replaceFragment(MenuFragment()) }
+        binding.fabBack.setOnClickListener { replaceFragmentMain(MenuFragment()) }
 
         return binding.root
     }

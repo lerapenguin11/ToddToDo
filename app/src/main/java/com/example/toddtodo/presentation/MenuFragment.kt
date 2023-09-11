@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.toddtodo.R
 import com.example.toddtodo.databinding.FragmentMenuBinding
-import com.example.toddtodo.utilits.replaceFragment
+import com.example.toddtodo.utilits.replaceFragmentMain
 
 class MenuFragment : Fragment() {
     private var _binding : FragmentMenuBinding? = null
@@ -29,13 +28,13 @@ class MenuFragment : Fragment() {
 
     private fun onClick() {
         binding.blockScheduled.setOnClickListener {
-            replaceFragment(ScheduledFragment())
+            replaceFragmentMain(ScheduledFragment())
         }
 
-        binding.fabAddTask.setOnClickListener{ replaceFragment(AddTaskFragment()) }
+        binding.fabAddTask.setOnClickListener{ replaceFragmentMain(AddTaskFragment()) }
 
-        binding.blockToday.setOnClickListener { replaceFragment(TodayFragment()) }
+        binding.blockToday.setOnClickListener { replaceFragmentMain(TodayFragment()) }
 
-        binding.blockAllTasks.setOnClickListener { replaceFragment(AllTaskFragment()) }
+        binding.blockAllTasks.setOnClickListener { replaceFragmentMain(AllTaskFragment()) }
     }
 }

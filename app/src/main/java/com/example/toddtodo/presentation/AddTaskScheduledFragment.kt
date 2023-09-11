@@ -20,7 +20,7 @@ import com.example.toddtodo.R
 import com.example.toddtodo.business.db.TaskList
 import com.example.toddtodo.business.db.TaskModel
 import com.example.toddtodo.databinding.FragmentAddTaskScheduledBinding
-import com.example.toddtodo.utilits.replaceFragment
+import com.example.toddtodo.utilits.replaceFragmentMain
 import com.example.toddtodo.viewModel.TaskViewModel
 
 class AddTaskScheduledFragment(private val taskId: Int, private val date: String, private val position: Int) : Fragment() {
@@ -42,7 +42,7 @@ class AddTaskScheduledFragment(private val taskId: Int, private val date: String
             ViewModelProvider.AndroidViewModelFactory.getInstance(application = requireActivity().application)
         ).get(TaskViewModel::class.java)
 
-        binding.btCloseAddTask.setOnClickListener { replaceFragment(ScheduledFragment()) }
+        binding.btCloseAddTask.setOnClickListener { replaceFragmentMain(ScheduledFragment()) }
         binding.btAddTime.setOnClickListener { showDialogTime() }
         binding.btSave.setOnClickListener {
             saveTask()
@@ -66,7 +66,7 @@ class AddTaskScheduledFragment(private val taskId: Int, private val date: String
            })
 
             binding.etInputTask.text.clear()
-            replaceFragment(MenuFragment())
+            replaceFragmentMain(MenuFragment())
         }
     }
 

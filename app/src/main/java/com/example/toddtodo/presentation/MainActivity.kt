@@ -2,11 +2,10 @@ package com.example.toddtodo.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.toddtodo.R
 import com.example.toddtodo.databinding.ActivityMainBinding
 import com.example.toddtodo.utilits.APP_ACTIVITY
-import com.example.toddtodo.utilits.replaceFragment
-import com.example.toddtodo.utilits.setStatusBarGradiant
+import com.example.toddtodo.utilits.replaceFragmentMain
+import com.example.toddtodo.utilits.setStatusBarGradiantMain
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -14,12 +13,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         APP_ACTIVITY = this
-        setStatusBarGradiant(this)
+        setStatusBarGradiantMain(this)
         setContentView(binding.root)
     }
 
     override fun onResume() {
         super.onResume()
-        replaceFragment(MenuFragment())
+        replaceFragmentMain(MenuFragment())
     }
 }

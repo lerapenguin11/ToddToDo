@@ -10,18 +10,13 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.toddtodo.R
 import com.example.toddtodo.business.db.TaskList
-import com.example.toddtodo.databinding.FragmentMenuBinding
 import com.example.toddtodo.databinding.FragmentTodayBinding
-import com.example.toddtodo.presentation.adapter.DateAdapter
 import com.example.toddtodo.presentation.adapter.TodayAdapter
-import com.example.toddtodo.utilits.replaceFragment
+import com.example.toddtodo.utilits.replaceFragmentMain
 import com.example.toddtodo.viewModel.TaskViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.ArrayList
-import java.util.Calendar
 
 class TodayFragment : Fragment() {
     private var _binding : FragmentTodayBinding? = null
@@ -46,7 +41,7 @@ class TodayFragment : Fragment() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(application = requireActivity().application)
         ).get(TaskViewModel::class.java)
 
-        binding.fabBack.setOnClickListener { replaceFragment(MenuFragment()) }
+        binding.fabBack.setOnClickListener { replaceFragmentMain(MenuFragment()) }
 
         println(currentDate)
 

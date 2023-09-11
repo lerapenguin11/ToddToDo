@@ -20,4 +20,9 @@
     <string name="done">Done</string>
     <string name="close">Close</string>
     <string name="set_task_execution_time">Set task execution time</string>
+    <string name="next">Next</string>
+    <string name="in_one_place">in one place</string>
+    <string name="all_of_your_tasks">All of your tasks</string>
+    <string name="your_reliable_companion_for_organizing_and_saving_ideas_to_do_lists_and_important_events_easily_create_edit_and_manage_your_notes">Your reliable companion for organizing and saving ideas, to-do lists and important events. Easily create, edit and manage your notes</string>
+    <string name="start">Start</string>
 </resources>

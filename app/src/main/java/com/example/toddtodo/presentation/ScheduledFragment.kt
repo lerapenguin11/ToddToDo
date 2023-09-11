@@ -15,7 +15,7 @@ import com.example.toddtodo.business.db.TaskModel
 import com.example.toddtodo.databinding.FragmentScheduledBinding
 import com.example.toddtodo.presentation.adapter.DateAdapter
 import com.example.toddtodo.presentation.adapter.listener.DataListener
-import com.example.toddtodo.utilits.replaceFragment
+import com.example.toddtodo.utilits.replaceFragmentMain
 import com.example.toddtodo.viewModel.TaskViewModel
 
 class ScheduledFragment : Fragment(), DataListener {
@@ -38,7 +38,7 @@ class ScheduledFragment : Fragment(), DataListener {
 
         observeTaskData()
 
-        binding.fabBack.setOnClickListener { replaceFragment(MenuFragment()) }
+        binding.fabBack.setOnClickListener { replaceFragmentMain(MenuFragment()) }
 
         return binding.root
     }
@@ -55,7 +55,7 @@ class ScheduledFragment : Fragment(), DataListener {
     }
 
     override fun getDataListener(date: TaskModel, position : Int) {
-        replaceFragment(AddTaskScheduledFragment(date.id, date.date, position))
+        replaceFragmentMain(AddTaskScheduledFragment(date.id, date.date, position))
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

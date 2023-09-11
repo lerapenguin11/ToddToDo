@@ -26,7 +26,7 @@ import com.example.toddtodo.business.db.TaskModel
 import com.example.toddtodo.databinding.FragmentAddTaskBinding
 import com.example.toddtodo.presentation.adapter.CalendarAdapter
 import com.example.toddtodo.presentation.adapter.listener.CalendarListener
-import com.example.toddtodo.utilits.replaceFragment
+import com.example.toddtodo.utilits.replaceFragmentMain
 import com.example.toddtodo.viewModel.TaskViewModel
 import java.time.LocalDate
 import java.time.YearMonth
@@ -57,7 +57,7 @@ class AddTaskFragment : Fragment(), CalendarListener {
         ).get(TaskViewModel::class.java)
 
 
-        binding.btCloseAddTask.setOnClickListener { replaceFragment(MenuFragment()) }
+        binding.btCloseAddTask.setOnClickListener { replaceFragmentMain(MenuFragment()) }
 
         binding.btAddDate.setOnClickListener { showDialogDate() }
         binding.btAddTime.setOnClickListener { showDialogTime() }
@@ -79,7 +79,7 @@ class AddTaskFragment : Fragment(), CalendarListener {
             /*viewModal.updateNote(TaskModel(id = 0, date = date, listTask = arrayListOf()))*/
 
             binding.etInputTask.text.clear()
-            replaceFragment(MenuFragment())
+            replaceFragmentMain(MenuFragment())
         }
     }
 
