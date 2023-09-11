@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ტოდტოდო</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">გამარჯობა ცარიელი ფრაგმენტი</string>
+    <string name="todd">ტოდოს სია</string>
+    <string name="scheduled">დაგეგმილი</string>
+    <string name="today">დღეს</string>
+    <string name="all_tasks">ყველა დავალება</string>
+    <string name="_3_lists_available">3 სია ხელმისაწვდომია</string>
+    <string name="create_new_item">ახალი ნივთის შექმნა</string>
+    <string name="set_time">Დროის დაყენება</string>
+    <string name="add_task">დავალების დამატება</string>
+    <string name="save">Გადარჩენა</string>
+    <string name="schedule_your_task">დაგეგმეთ თქვენი ამოცანა</string>
+    <string name="s">S</string>
+    <string name="m">მ</string>
+    <string name="t">მ</string>
+    <string name="w">W</string>
+    <string name="f">ვ</string>
+    <string name="done">შესრულებულია</string>
+    <string name="close">ახლო</string>
+    <string name="set_task_execution_time">დაადგინეთ დავალების შესრულების დრო</string>
+    <string name="next">შემდეგი</string>
+    <string name="in_one_place">ერთ ადგილზე</string>
+    <string name="all_of_your_tasks">თქვენი ყველა დავალება</string>
+    <string name="your_reliable_companion_for_organizing_and_saving_ideas_to_do_lists_and_important_events_easily_create_edit_and_manage_your_notes">თქვენი საიმედო თანამგზავრი იდეების ორგანიზებისა და დაზოგვისთვის, დავალებების სიები და მნიშვნელოვანი ღონისძიებები. ადვილად შექმენით, შეცვალეთ და მართეთ თქვენი შენიშვნები</string>
+    <string name="start">დასაწყისი</string>
+</resources>

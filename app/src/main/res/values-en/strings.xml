@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ToddToDo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todd">TODO LIST</string>
+    <string name="scheduled">Scheduled</string>
+    <string name="today">Today</string>
+    <string name="all_tasks">All Tasks</string>
+    <string name="_3_lists_available">3 Lists available</string>
+    <string name="create_new_item">Create new Item</string>
+    <string name="set_time">Set time</string>
+    <string name="add_task">Add task</string>
+    <string name="save">Save</string>
+    <string name="schedule_your_task">Schedule your task</string>
+    <string name="s">S</string>
+    <string name="m">M</string>
+    <string name="t">T</string>
+    <string name="w">W</string>
+    <string name="f">F</string>
+    <string name="done">Done</string>
+    <string name="close">Close</string>
+    <string name="set_task_execution_time">Set task execution time</string>
+    <string name="next">Next</string>
+    <string name="in_one_place">in one place</string>
+    <string name="all_of_your_tasks">All of your tasks</string>
+    <string name="your_reliable_companion_for_organizing_and_saving_ideas_to_do_lists_and_important_events_easily_create_edit_and_manage_your_notes">Your reliable companion for organizing and saving ideas, to-do lists and important events. Easily create, edit and manage your notes</string>
+    <string name="start">Start</string>
+</resources>

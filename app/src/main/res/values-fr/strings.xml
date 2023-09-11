@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ToddToDo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+    <string name="todd">LISTE DE CHOSES À FAIRE</string>
+    <string name="scheduled">Programmé</string>
+    <string name="today">Aujourd\'hui</string>
+    <string name="all_tasks">Toutes les tâches</string>
+    <string name="_3_lists_available">3 listes disponibles</string>
+    <string name="create_new_item">Créer un nouvel article</string>
+    <string name="set_time">Régler le temps</string>
+    <string name="add_task">Ajouter une tâche</string>
+    <string name="save">Sauvegarder</string>
+    <string name="schedule_your_task">Planifiez votre tâche</string>
+    <string name="s">S</string>
+    <string name="m">M.</string>
+    <string name="t">T</string>
+    <string name="w">W</string>
+    <string name="f">F</string>
+    <string name="done">Fait</string>
+    <string name="close">Fermer</string>
+    <string name="set_task_execution_time">Définir le temps d\'exécution des tâches</string>
+    <string name="next">Suivant</string>
+    <string name="in_one_place">au même endroit</string>
+    <string name="all_of_your_tasks">Toutes vos tâches</string>
+    <string name="your_reliable_companion_for_organizing_and_saving_ideas_to_do_lists_and_important_events_easily_create_edit_and_manage_your_notes">Votre compagnon fiable pour organiser et enregistrer des idées, des listes de tâches et des événements importants. Créez, modifiez et gérez facilement vos notes</string>
+    <string name="start">Démarrer</string>
+</resources>

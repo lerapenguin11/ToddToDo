@@ -19,32 +19,32 @@ class OnBoardingToddActivity : AppCompatActivity() {
         setContentView(R.layout.activity_on_boarding_todd)
         APP_ACTIVITY_ONBOARDING = this
         setStatusBarGradiantOnBoarding(this)
-        setViewPager()
+        setViewPagerTodd()
     }
 
-    private fun setViewPager() {
-        val fragmentList = ArrayList<Fragment>()
-        fragmentList.add(ThirstFragment())
-        fragmentList.add(SecondFragment())
+    private fun setViewPagerTodd() {
+        val fragList = ArrayList<Fragment>()
+        fragList.add(ThirstFragment())
+        fragList.add(SecondFragment())
 
         val adapterViewPager = OnBoardingToddAdapter(
-            fragmentList,
+            fragList,
             this.supportFragmentManager,
             lifecycle
         )
-        val finish = findViewById<ImageView>(R.id.finish)
+        val close = findViewById<ImageView>(R.id.finish)
 
-        finish.setOnClickListener { v: View? ->
+        val viewPager = findViewById<ViewPager2>(R.id.view_pager)
+        viewPager.adapter = adapterViewPager
+        val indicator = findViewById<DotsIndicator>(R.id.dots_indicator)
+        indicator.attachTo(viewPager)
+
+        close.setOnClickListener { v: View? ->
             val intent = Intent(
                 this@OnBoardingToddActivity,
                 MainActivity::class.java)
             startActivity(intent)
             finish()
         }
-
-        val viewPager = findViewById<ViewPager2>(R.id.view_pager)
-        viewPager.adapter = adapterViewPager
-        val indicator = findViewById<DotsIndicator>(R.id.dots_indicator)
-        indicator.attachTo(viewPager)
     }
 }

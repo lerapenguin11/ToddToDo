@@ -10,19 +10,19 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.toddtodo.R
 
-fun replaceFragmentMain(fragment: Fragment, addStack: Boolean = true) {
-    if (addStack) {
+fun replaceFragmentMain(fagmnt: Fragment, aStack: Boolean = true) {
+    if (aStack) {
         APP_ACTIVITY.supportFragmentManager.beginTransaction()
             .addToBackStack(null)
             .replace(
                 R.id.main_layout,
-                fragment
+                fagmnt
             ).commit()
     } else {
         APP_ACTIVITY.supportFragmentManager.beginTransaction()
             .replace(
                 R.id.main_layout,
-                fragment
+                fagmnt
             ).commit()
     }
 }
@@ -40,19 +40,19 @@ fun setStatusBarGradiantMain(activity: Activity) {
     }
 }
 
-fun replaceFragmentOnBoarding(fragment: Fragment, addStack: Boolean = true) {
-    if (addStack) {
+fun replaceFragmentOnBoarding(frent: Fragment, stack: Boolean = true) {
+    if (stack) {
         APP_ACTIVITY_ONBOARDING.supportFragmentManager.beginTransaction()
             .addToBackStack(null)
             .replace(
                 R.id.on_boarding_layout,
-                fragment
+                frent
             ).commit()
     } else {
         APP_ACTIVITY_ONBOARDING.supportFragmentManager.beginTransaction()
             .replace(
                 R.id.on_boarding_layout,
-                fragment
+                frent
             ).commit()
     }
 }
