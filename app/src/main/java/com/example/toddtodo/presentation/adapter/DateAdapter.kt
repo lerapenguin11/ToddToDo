@@ -1,5 +1,6 @@
 package com.example.toddtodo.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,9 +23,26 @@ class DateAdapter(private val listener : DataListener) : RecyclerView.Adapter<Da
         return DateViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DateViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DateViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val dateItem = dates[position]
         holder.bind(dateItem)
+        holder.btDelete.setOnClickListener {
+            listener.getDeleteTaskList(dateItem, position = position)
+        }
+
+        holder.taskRecyclerView.layoutManager = LinearLayoutManager(holder.itemView.context)
+        val adapter = TaskAdapter(object : TaskAdapter.RecyclerView2ClickListener {
+
+            override fun onItemClick(position_: Int, task: TaskList) {
+                listener.getDateTaskListener(dateItem, task, position_, positionList = position)
+            }
+        })
+        holder.taskRecyclerView.adapter = adapter
+        adapter.setItem(dateItem.listTask)
+
+        holder.newItemTask.setOnClickListener {
+            listener.getDataListener(dateItem, position = position)
+        }
     }
 
     override fun getItemCount(): Int = dates.size
@@ -37,30 +55,13 @@ class DateAdapter(private val listener : DataListener) : RecyclerView.Adapter<Da
 
     inner class DateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dateTextView: TextView = itemView.findViewById(R.id.tv_date)
-        private val taskRecyclerView: RecyclerView = itemView.findViewById(R.id.recyclerView)
-        private val newItemTask: ConstraintLayout =
+        val taskRecyclerView: RecyclerView = itemView.findViewById(R.id.recyclerView)
+        val newItemTask: ConstraintLayout =
             itemView.findViewById(R.id.cl_create_new_item_child)
-        private val btDelete : ConstraintLayout = itemView.findViewById(R.id.cl_delete_item_parent)
+        val btDelete : ConstraintLayout = itemView.findViewById(R.id.cl_delete_item_parent)
 
         fun bind(dateItem: TaskModel) {
             dateTextView.text = dateItem.date
-            taskRecyclerView.layoutManager = LinearLayoutManager(itemView.context)
-            val adapter = TaskAdapter(object : TaskAdapter.RecyclerView2ClickListener {
-
-                override fun onItemClick(position_: Int, task: TaskList) {
-                    listener.getDateTaskListener(dateItem, task, position_, positionList = position)
-                }
-            })
-            taskRecyclerView.adapter = adapter
-            adapter.setItem(dateItem.listTask)
-
-            newItemTask.setOnClickListener {
-                listener.getDataListener(dateItem, position = position)
-            }
-
-            btDelete.setOnClickListener {
-                listener.getDeleteTaskList(dateItem, position = position)
-            }
         }
     }
 }

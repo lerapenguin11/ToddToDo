@@ -23,6 +23,7 @@ class ScheduledFragment : Fragment(), DataListener {
     private val binding get() = _binding!!
     private lateinit var viewModal : TaskViewModel
     private val adapter = DateAdapter(this)
+    private lateinit var listTaskList : ArrayList<TaskList>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,11 +81,10 @@ class ScheduledFragment : Fragment(), DataListener {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getDeleteTaskList(date: TaskModel, position: Int) {
         viewModal.allTask.observe(viewLifecycleOwner, Observer {
-            val listTaskList = it.get(position).listTask
-            val checkList = listTaskList.filter { it.click }
-            if (checkList.size == listTaskList.size){
+            for (i in it){
+                val list = i.listTask
                 viewModal.deleteNote(TaskModel(date.id, date.date,
-                    datePicker = date.datePicker, listTask = listTaskList))
+                    datePicker = date.datePicker, listTask = list))
             }
         })
     }

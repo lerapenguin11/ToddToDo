@@ -22,7 +22,20 @@ class TaskAdapter(/*private val tasks : ArrayList<TaskList>*/private val itemCli
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
+
         holder.bind(task)
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClick(position, task)
+            if (task.click){
+                holder.taskTextView.paintFlags = holder.taskTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                holder.itemClick.setBackgroundResource(R.drawable.bg_click_item)
+            }
+        }
+
+        if (task.click){
+            holder.taskTextView.paintFlags = holder.taskTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            holder.itemClick.setBackgroundResource(R.drawable.bg_click_item)
+        }
     }
 
     override fun getItemCount(): Int = tasks.size
@@ -34,22 +47,17 @@ class TaskAdapter(/*private val tasks : ArrayList<TaskList>*/private val itemCli
     }
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private val taskTextView : TextView = itemView.findViewById(R.id.tv_task)
+        val taskTextView : TextView = itemView.findViewById(R.id.tv_task)
         private val timeTextView : TextView = itemView.findViewById(R.id.tv_time)
-        private val itemClick : ConstraintLayout = itemView.findViewById(R.id.box_task)
+        val itemClick : ConstraintLayout = itemView.findViewById(R.id.box_task)
+        val item : ConstraintLayout = itemView.findViewById(R.id.item_view)
 
         fun bind(task: TaskList) {
             taskTextView.text = task.task
             timeTextView.text = task.time
 
-            if (task.click){
-                taskTextView.paintFlags = taskTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                itemClick.setBackgroundResource(R.drawable.bg_click_item)
-            }
-
             itemView.setOnClickListener {
                 //onFavoriteClickListener?.invoke(task)
-                itemClickListener.onItemClick(position, task)
             }
         }
     }
